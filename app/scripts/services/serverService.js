@@ -1,16 +1,8 @@
-
-
-app.factory('serverService', function() {
+app.factory('serverService', function($http) {
   return{
-    getFromServer: function($http){
-
-    $http.get("http://localhost:3000/lists.json")
-      .then(function(response){
-
-        return response.data;
-      });
-
-
+    getFromServer: function(){
+      return $http.get("http://localhost:3000/lists.json");
     }
+    
   };
 });

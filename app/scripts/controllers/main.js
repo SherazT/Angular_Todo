@@ -10,7 +10,9 @@
 var app = angular.module('mytodoApp')
 .controller('MainCtrl', function ($scope, $http, serverService) {
 
-      $scope.todos = serverService.getFromServer();
+   serverService.getFromServer().then(function(resp) {
+      $scope.todos = resp.data;
+   });
 
       $scope.addTodo = function(){
         $http.post("http://localhost:3000/lists.json", {name: $scope.todo})

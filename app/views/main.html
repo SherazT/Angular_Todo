@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>All Todo Lists</h2>
+    <div ng-repeat="todo in todos">
+    <button ng-click= "clicked()" class="btn">
+      {{todo.name}}
+      {{todo.id}}
+        </button>
+      <div style="display:block;float:right;">
+
+           <button align ="right" ng-click= "edit()" class="btn">
+          Edit
+        </button>
+        <button align ="right" ng-click= "delete(todo)" class="btn">
+          Delete
+        </button>
+        
+      </div>
+    </div>
+
+  <p></p>
+
+    <!-- Todos input -->
+  <form role="form" ng-submit="addTodo()">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" ng-model="todo" placeholder="Name of new List" class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Add">
+        </span>
+      </div>
+    </div>
+  </form>

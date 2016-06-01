@@ -1,23 +1,37 @@
 <div class="container">
   <h2>All Todo Lists</h2>
     <div ng-repeat="todo in todos">
-    <button ng-click= "clicked()" class="btn">
+    <button ng-click="clicked(todo)" class="btn">
       {{todo.name}}
-      {{todo.id}}
         </button>
       <div style="display:block;float:right;">
-
-           <button align ="right" ng-click= "edit()" class="btn">
+        <button align="right" ng-click="showEdit(todo)" class="btn">
           Edit
         </button>
-        <button align ="right" ng-click= "delete(todo)" class="btn">
+        <button align="right" ng-click="delete(todo)" class="btn">
           Delete
         </button>
         
       </div>
     </div>
 
-  <p></p>
+  <p>
+
+ <form role="form" ng-show="editName" ng-submit="edit(existingTodo)">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" ng-model="existingTodo.name" class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Update Name">
+          <button align="right" ng-click="closeTab()" class="btn">
+            X
+          </button>
+        </span>
+      </div>
+    </div>
+  </form>
+
+  </p>
 
     <!-- Todos input -->
   <form role="form" ng-submit="addTodo()">
@@ -30,3 +44,5 @@
       </div>
     </div>
   </form>
+
+

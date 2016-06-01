@@ -1,12 +1,14 @@
 <div class="container">
   <h2>All Tasks</h2>
     <div ng-repeat="task in tasks">
-    <button ng-click="clicked()" class="btn">
-      {{task.name}}
-      {{task.id}}
-      {{task.list_id}}
-        </button>
+      <div ng-click="clicked()" class="btn">
+        {{task.task}}
+        {{task.description}}
+      </div>
       <div style="display:block;float:right;">
+        <button align="right" ng-click="markComplete(task)" class="btn">
+          Mark as Complete
+        </button>
         <button align="right" ng-click="showEdit(task)" class="btn">
           Edit
         </button>
@@ -19,12 +21,12 @@
 
   <p>
 
- <form role="form" ng-show="editName" ng-submit="edit(existingtask)">
+ <form role="form" ng-show="editName" ng-submit="edit(existingTask)">
     <div class="row">
       <div class="input-group">
-        <input type="text" ng-model="existingtask.name" class="form-control">
+        <input type="text" ng-model="existingTask.task" class="form-control">
         <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Update Name">
+          <input type="submit" class="btn btn-primary" value="Update Task">
           <button align="right" ng-click="closeTab()" class="btn">
             X
           </button>
@@ -39,7 +41,7 @@
   <form role="form" ng-submit="addtask()">
     <div class="row">
       <div class="input-group">
-        <input type="text" ng-model="task" placeholder="Name of new List" class="form-control">
+        <input type="text" ng-model="task" placeholder="Name of New Task" class="form-control">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Add">
         </span>

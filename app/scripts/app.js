@@ -23,9 +23,9 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/todo', {
-        templateUrl: 'views/todo.html',
-        controller: 'TodoCtrl'
+      .when('/list/:id', {
+        templateUrl: 'views/list.html',
+        controller: 'ListCtrl'
       })
       .when('/edit', {
         templateUrl: 'views/edit.html',

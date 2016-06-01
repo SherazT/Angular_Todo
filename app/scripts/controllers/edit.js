@@ -1,17 +1,19 @@
-'use strict';
-
 /**
  * @ngdoc function
- * @name mytodoApp.controller:EditCtrl
+ * @name mytodoApp.controller:MainCtrl
  * @description
- * # EditCtrl
+ * # MainCtrl
  * Controller of the mytodoApp
  */
-angular.module('mytodoApp')
-  .controller('EditCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+'use strict';
+
+var app = angular.module('mytodoApp')
+.controller('EditCtrl', function ($scope, $http, serverService) {
+
+  $scope.edit= function() {
+        serverService.putFromServer($scope.todo).then(function(resp) {
+        $scope.todo = resp.data;
+        });
+      }
   });
+

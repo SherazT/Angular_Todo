@@ -54,6 +54,14 @@ var app = angular.module('mytodoApp')
        window.location = '#/';
       };
 
+      $scope.delete = function (task) {            
+       $http.delete("http://localhost:3000/lists/"+
+          task.list_id+"/items/"+
+          task.id+".json");
+       debugger
+        $scope.tasks.splice($scope.tasks.indexOf(task), 1);
+      };
+
        $scope.edit = function(){ 
          $http.put("http://localhost:3000/lists/"+
           $scope.existingTask.list_id+"/items/"+

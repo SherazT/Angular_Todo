@@ -32,10 +32,11 @@
 
   <p>
 
- <form role="form" ng-show="editName" ng-submit="edit(existingTask)">
+ <form role="form" ng-show="editName" ng-submit="edit(existingTask)" required>
     <div class="row">
       <div class="input-group">
         <input type="text" ng-model="existingTask.task" class="form-control">
+        <input type="text" ng-model="existingTask.description" class="form-control">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Update Task">
           <button align="right" ng-click="closeTab()" class="btn">
@@ -49,7 +50,7 @@
   </p>
 
     <!-- tasks input -->
-  <form role="form" ng-submit="addTask()">
+  <form role="form" ng-submit="addTask()" required>
     <div class="row">
       <div class="input-group">
         <input type="text" ng-model="task" placeholder="Name of New Task" class="form-control">

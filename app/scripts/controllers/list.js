@@ -12,30 +12,59 @@ var app = angular.module('mytodoApp')
 
      $http.get("http://localhost:3000/lists/"+  $routeParams.id +".json").then(function(resp) {
       $scope.list = resp.data;
-      $scope.tasks = $scope.list.items;
-      
-     });
+      $scope.tasks = $scope.list.items; });
 
-      $scope.addTodo= function() {
-        serverService.postFromServer($scope.task).then(function(resp) {
+      $scope.addTask= function() {
+        
+   $http.post("http://localhost:3000/lists/" +$routeParams.id +"/items"+ 
+    ".json", {item:{task: $scope.task, description: $scope.description}}).then(function(resp) {
+
         $scope.tasks.push(resp.data);
         });
       }
       $scope.showEdit= function(task){
         $scope.editName = true;
         $scope.existingTask = task;
-      }
-
-      $scope.edit = function(existingTask){
-        $http.put("http://localhost:3000/lists/"+  $routeParams.id +".json", {task: existingTask.task}).then(function(resp) {
-        $scope.existingTodo.task = resp.data.task;
-         });
-      }
-
+      } 
+      
       $scope.closeTab = function(){
         $scope.editName = false;
       }
 
+      $scope.markComplete = function(task){ 
+        if (task.completed == false){
+        task.completed = true;
+        }
+        else{
+        task.completed = false;
+        }
+
+         $http.put("http://localhost:3000/lists/"+
+          task.list_id+"/items/"+
+          task.id+".json", 
+          {item:task})
+         .then(function(resp){
+          
+         task = resp.data;
+         }
+         ) 
+       };
+
+      $scope.back = function(){
+       window.location = '#/';
+      };
+
+       $scope.edit = function(){ 
+         $http.put("http://localhost:3000/lists/"+
+          $scope.existingTask.list_id+"/items/"+
+          $scope.existingTask.id+".json", 
+          {item:$scope.existingTask})
+         .then(function(resp){
+          
+         $scope.existingTask = resp.data;
+         }
+         ) 
+       };
 
   });
 

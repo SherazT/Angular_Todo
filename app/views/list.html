@@ -1,13 +1,24 @@
 <div class="container">
   <h2>All Tasks</h2>
     <div ng-repeat="task in tasks">
-      <div ng-click="clicked()" class="btn">
+<!--Not Completed Task-->
+      <div ng-show="!task.completed" ng-click="clicked()" class="btn">
         {{task.task}}
         {{task.description}}
       </div>
+<!--Completed Task-->
+      <div ng-show="task.completed" ng-click="clicked()" class="btn">
+        <strike>{{task.task}}
+        {{task.description}}</strike>
+      </div>
+
+
       <div style="display:block;float:right;">
-        <button align="right" ng-click="markComplete(task)" class="btn">
+        <button align="right" ng-show="!task.completed" ng-click="markComplete(task)" class="btn">
           Mark as Complete
+        </button>
+        <button align="right" ng-show="task.completed" ng-click="markComplete(task)" class="btn">
+          Mark as Incomplete
         </button>
         <button align="right" ng-click="showEdit(task)" class="btn">
           Edit
@@ -38,15 +49,19 @@
   </p>
 
     <!-- tasks input -->
-  <form role="form" ng-submit="addtask()">
+  <form role="form" ng-submit="addTask()">
     <div class="row">
       <div class="input-group">
         <input type="text" ng-model="task" placeholder="Name of New Task" class="form-control">
+        <input type="text" ng-model="description" placeholder="Description of New Task" class="form-control">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Add">
         </span>
       </div>
     </div>
   </form>
+  <button ng-click="back()">
+BACK
+  </button>
 
 
